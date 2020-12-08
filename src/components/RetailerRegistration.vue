@@ -44,9 +44,15 @@
 
 <script>
 import axios from 'axios';
+import { mapGetters } from 'vuex';
 
 export default {
     name: 'RetailerRegistration',
+    computed: {
+        ...mapGetters({
+            user: 'auth/user'
+        })
+    },
     data(){
             return {
                previewImage: null,
@@ -92,7 +98,7 @@ export default {
             var formData = new FormData();
             formData.set('image', this.image);
             
-            const res = await axios.put('https://haute-loire.org/api/user/2', { //virer le /2 et remplacer par l'id de l'user connecté
+            const res = await axios.put('https://haute-loire.org/api/user/'+this.user.id, {
                 pictures: formData,
                 storeName: this.nameRetailer,
                 storeType: this.selected,
@@ -102,9 +108,9 @@ export default {
             console.log(res);
         },
         async getImg() { // à supprimer, c'était pour tester l'affichage de l'image
-            const res = await axios.get('https://haute-loire.org/api/user/2');
-            //console.log(res.data.pictures);
-            return res.data;
+            const res = await axios.get('https://haute-loire.org/api/user/'+this.user.id);
+            console.log(res.data);
+            return this.user.id;
         }
     }
 }

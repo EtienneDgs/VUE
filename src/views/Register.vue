@@ -100,6 +100,7 @@ export default {
 
             console.log(res.data);
             console.log("compte créé avec succès");
+            this.displaySuccess();
 
             }
             catch (e) {

@@ -65,7 +65,9 @@ export default {
         city: '',
         email: '',
         password: '',
-        passwordConfirmation: ''
+        passwordConfirmation: '',
+        lat: '',
+        long: ''
     }
   }, 
   methods: {
@@ -76,6 +78,8 @@ export default {
         this.passwordConfirm(this.password, this.passwordConfirmation)
         ) {
             try {
+                let latLong = await this.getLatLong(); //on récupère la lat et long dans cette variable
+
                 let res = await axios.post('https://haute-loire.org/api/user', {
                     name: this.firstName + " "+ this.lastName,
                     firstName: this.firstName,
@@ -84,8 +88,8 @@ export default {
                     password: this.password,
                     payroll: 0,
                     retailer: 0,
-                    latitude: 45, //à modifier
-                    longitude: 0,  // à modifier
+                    latitude: latLong[0], //latitude est le premier élément de la variable latLong
+                    longitude: latLong[1],  //longitude est le second élément de la variable latLong
                     address: this.adress,
                     postalCode: this.postCode,
                     city: this.city
@@ -119,7 +123,20 @@ export default {
       passwordConfirm(password, passwordConfirmation) {
           return password == passwordConfirmation;
 
-      }
+      },
+      async getLatLong() { 
+            let url = "https://nominatim.openstreetmap.org/search.php";
+            let params = {
+                q: this.adress+" "+this.city+" "+this.postCode,
+                format: 'json',
+                addressdetails: 1
+            };
+            const res = await axios.get(url, {params: params}); //on stock la réponse dans cette variable
+            console.log(res.data[0].lat);
+            console.log(res.data[0].lon);
+            return [res.data[0].lat, res.data[0].lon]; //on retourne un tableau avec les 2 éléments
+
+        }
       
   }
 

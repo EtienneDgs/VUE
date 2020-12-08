@@ -7,19 +7,13 @@
             <div class="text-left">
               <ul>
                  <li>
-                  <a href="#"><i class=""></i>Mes informations de compte</a>
+                  <a href="#"><i class=""></i>Modifier mon compte utilisateur</a>
                 </li>
                 <li>
-                  <a href="#"><i class=""></i>Acheter des BordierCoins</a>
+                  <a href="#"><i class=""></i>Editer un compte commerçant</a>
                 </li>
                 <li>
-                  <a href="#"><i class=""></i>Faire un virement à un commerçant</a>
-                </li>
-                <li>
-                  <a href="#"><i class=""></i>Créer un compte commerçant</a>
-                </li>
-                <li>
-                  <a href="#"><i class=""></i>Se déconnecter</a>
+                  <a href="#"><i class=""></i>Solde Ethicoins</a>
                 </li>
                 <li>
                   <a href="#"><i class=""></i>Supprimer mon compte</a>
@@ -29,7 +23,6 @@
           </div>
           <div class="col-lg-8 text-center" id="dashboard">
             <h2>informations</h2>
-            <RetailerRegistration />
           </div>
         </div>
       </div>
@@ -38,15 +31,5 @@
 
 <script>
 
-import RetailerRegistration from '../components/RetailerRegistration.vue';
 
-export default {
-  name: 'Dashboard',
-  components: { RetailerRegistration },
-  data() {
-    return {
-      
-    }
-  }
-}
 </script>

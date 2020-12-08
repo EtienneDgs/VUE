@@ -95,6 +95,7 @@ export default {
             const res = await axios.put('https://haute-loire.org/api/user/2', { //virer le /2 et remplacer par l'id de l'user connecté
                 pictures: formData,
                 storeName: this.nameRetailer,
+                storeType: this.selected,
                 storeDescription: this.description
             });
 

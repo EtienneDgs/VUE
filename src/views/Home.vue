@@ -6,12 +6,10 @@
       
 
       <div class="col-md-6 categories">
-
+        <!--
         <Categories 
-          @mouse-over-retailer="mouseOverRetailer"
-          @mouse-left-retailer="mouseLeftRetailer"
           v-bind:retailers="retailers"/>
-       
+       -->
       </div>
       <div class="col-md-6 map">
         <Map v-bind:retailers="retailers"/>
@@ -24,15 +22,13 @@
 <script>
 // @ is an alias to /src
 
-import Categories from '@/components/Categories.vue';
 import Map from '@/components/Map.vue';
 
-import axios from 'axios';
 
 export default {
   name: 'Home',
   components: {
-    Categories,
+    //Categories,
     Map
   },
   data() {
@@ -41,16 +37,10 @@ export default {
     }
   }, 
   methods: {
-    mouseOverRetailer: function (index) {
-      console.log(index+"mouse over");
-    },
-    mouseLeftRetailer: function (index) {
-      console.log(index+"mouse left");
-    },
+
   },
   mounted() {
-    axios.get('http://localhost:8000/api/retailers')
-      .then(response => { this.retailers = response.data; });
+
   }
 }
 </script>

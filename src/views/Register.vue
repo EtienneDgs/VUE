@@ -46,6 +46,9 @@
         <div id="error-message">
             <p>Votre compte n'a pas pu être créé.</p>
         </div>
+        <div id="success-message">
+            <p>Votre compte a été créé avec succès.</p>
+        </div>
     </div>
 </template>
 
@@ -97,16 +100,15 @@ export default {
 
             console.log(res.data);
             console.log("compte créé avec succès");
+
             }
             catch (e) {
                 console.log(e);
-                var ta = document.querySelector("#error-message");
-                ta.style.display = "block";
+                this.displayError();
             }
         } else {
             console.log("pas ok")
-            var t = document.querySelector("#error-message");
-            t.style.display = "block";
+            this.displayError();
         }
 
       },
@@ -123,6 +125,18 @@ export default {
       passwordConfirm(password, passwordConfirmation) {
           return password == passwordConfirmation;
 
+      },
+      displayError() {
+          var t = document.querySelector("#error-message");
+          t.style.display = 'block';
+      },
+      hideError() {
+          var t = document.querySelector("#error-message");
+          t.style.display = 'none';
+      },
+      displaySuccess() {
+          var ta = document.querySelector("#success-message");
+          ta.style.display = 'block';
       },
       async getLatLong() { 
             let url = "https://nominatim.openstreetmap.org/search.php";
@@ -145,6 +159,10 @@ export default {
 
 <style scoped>
 #error-message {
+    display: none;
+}
+
+#success-message {
     display: none;
 }
 

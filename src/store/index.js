@@ -5,7 +5,7 @@ import auth from './auth'
 Vue.use(Vuex);
 
 const getters = {
-
+    
 }
 
 const mutations = {

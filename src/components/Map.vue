@@ -20,10 +20,10 @@
       <l-marker 
         v-for="retailer in retailers" 
         :key="retailer.id" 
-        :lat-lng="getPos(retailer.lat,retailer.long)"
+        :lat-lng="getPos(retailer.latitude,retailer.longitude)"
         id="marker">
         <l-popup class="popup">
-          <div @click="innerClick">
+          <div @click="innerClick(retailer)">
             {{retailer.name}}
             <p v-show="showParagraph">
               {{retailer.description}}
@@ -63,15 +63,14 @@ import { LMap, LTileLayer, LMarker, LPopup } from "vue2-leaflet";
         url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
         attribution:
             '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-        withPopup: latLng(45.7455653,4.8355129),
-        withTooltip: latLng(45.7498627,4.8263183),
         currentZoom: 11.5,
         currentCenter: latLng(45.7462373, 4.8339948),
         showParagraph: false,
         mapOptions: {
             zoomSnap: 0.5
         },
-        showMap: true
+        showMap: true,
+        retailer: ''
     }
   },
   methods: {
@@ -84,8 +83,11 @@ import { LMap, LTileLayer, LMarker, LPopup } from "vue2-leaflet";
     showLongText() {
       this.showParagraph = !this.showParagraph;
     },
-    innerClick() {
-      alert("Click!");
+    innerClick(retailer) {
+      this.$router.replace({
+                    name: 'Retailer', params: {id: retailer.id, retailer: retailer}
+                });
+      //console.log(retailer.id);
     },
     getPos(lat, long) {
       return latLng(lat,long);

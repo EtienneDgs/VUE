@@ -1,6 +1,6 @@
 <template>
     <div>
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top" id="nav-total">
           <div class="container-fluid">
             <router-link :to="{name: 'Home'}"><img src="img/Logo.png" alt="Logo"></router-link>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,9 +8,13 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="nav navbar-nav mr-auto">
+                <ul class="nav navbar-nav mr-auto" id="nav-list">
                     <li>
                         <router-link :to="{name: 'Home'}">Home</router-link>
+                    </li>
+
+                    <li>
+                        <router-link :to="{name: 'Retailers'}">Où dépenser</router-link>
                     </li>
                     
                     <template v-if="authenticated">  
@@ -75,6 +79,31 @@ export default {
 <style scoped>
 #hello-name {
     color: white;
+}
+
+.navbar {
+    height: 10vh;
+}
+
+#nav-list {
+    margin: 10px;
+    padding: 10px;
+
+}
+
+ul li {
+    margin: 15px;
+    display: inline-block;
+    transition: all 0.3s ease-in-out;
+    font-size: 20px;
+
+    
+}
+
+ul li :hover {
+    color: white;
+    text-decoration: none;
+
 }
 
 </style>

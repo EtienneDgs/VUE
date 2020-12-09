@@ -5,6 +5,8 @@ import Login from '../views/Login.vue'
 import Signin from '../views/Signin.vue'
 import Dashboard from '../views/Dashboard.vue'
 import Register from '../views/Register.vue'
+import Retailers from '../views/Retailers.vue'
+import Retailer from '../views/Retailer.vue'
 import store from '@/store'
 
 Vue.use(VueRouter)
@@ -14,6 +16,16 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/Retailers',
+    name: 'Retailers',
+    component: Retailers
+  },
+  {
+    path: '/Retailer/:id',
+    name: 'Retailer',
+    component: Retailer
   },
   
   {

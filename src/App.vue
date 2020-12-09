@@ -26,5 +26,9 @@ export default {
 
 
 <style>
+@import url("https://fonts.googleapis.com/css?family=Muli:300,400,600,700,800,900");
 
+#app {
+  font-family: "Muli", "sans-serif";
+}
 </style>

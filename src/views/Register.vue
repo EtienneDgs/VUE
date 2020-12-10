@@ -7,9 +7,9 @@
                 <div>
                     <label for="name">
                         Nom : 
-                    </label>
-                    <input type="text" name="firstName" placeholder="Prénom" id="firstName" v-model="firstName">
-                    <input type="text" name="lastName" placeholder="Nom" id="lastName" v-model="lastName">
+                    </label> <br>
+                    <input type="text" name="firstName" placeholder="Prénom" id="name" v-model="firstName">
+                    <input type="text" name="lastName" placeholder="Nom" id="name" v-model="lastName">
                 </div>
                 <br>
                 <div>
@@ -38,7 +38,6 @@
                         @keyup="checkPassword"
                         name="password" placeholder="Mot de passe" id="password" v-model="password">
                 </div>
-                <br>
                 <div>
                     <label for="password">
                         Confirmation mot de passe : 
@@ -49,27 +48,30 @@
                     @keyup="checkConfirmation"
                      name="passwordConfirmation" placeholder="Mot de passe" id="passwordConfirmation" v-model="passwordConfirmation">
                 </div>
+                <br>
                 <div>
                     <button class="btn btn-dark" type="register">Register</button>
                 </div>
             </form>
             
         </div>
-        <div v-if="passwordMsg" class="col-md-4 text-center" id="message">
-            <h4> Votre mot de passe doit contenir :</h4>
-            <p id="letter" class="invalid">Une lettre <b>minuscule</b></p>
-            <p id="capital" class="invalid">Une lettre  <b>majuscule</b></p>
-            <p id="number" class="invalid">Un <b>nombre</b></p>
-            <p id="length" class="invalid">Minimum <b>6 caractères</b></p>
-        </div>
-        <div v-if="confirmationMsg" class="col-md-4 text-center" id="message">
-            <p id="pwConfirmation" class="invalid">La confrimation doit correspondre au mot de passe.</p>
-        </div>
-        <div id="error-message">
-            <p>Votre compte n'a pas pu être créé.</p>
-        </div>
-        <div id="success-message">
-            <p>Votre compte a été créé avec succès.</p>
+        <div class="messages justify-content-center" >
+            <div v-if="passwordMsg" class="col-md-4 text-center" id="message">
+                <h4> Votre mot de passe doit contenir :</h4>
+                <p id="letter" class="invalid">Une lettre <b>minuscule</b></p>
+                <p id="capital" class="invalid">Une lettre  <b>majuscule</b></p>
+                <p id="number" class="invalid">Un <b>nombre</b></p>
+                <p id="length" class="invalid">Minimum <b>6 caractères</b></p>
+            </div>
+            <div v-if="confirmationMsg" class="col-md-4 text-center" id="message">
+                <p id="pwConfirmation" class="invalid">La confirmation doit correspondre au mot de passe.</p>
+            </div>
+            <div id="error-message">
+                <p>Votre compte n'a pas pu être créé.</p>
+            </div>
+            <div id="success-message">
+                <p>Votre compte a été créé avec succès.</p>
+            </div>
         </div>
     </div>
 </template>
@@ -244,6 +246,15 @@ export default {
 </script>
 
 <style scoped>
+#register-form {
+    width: 100%;
+}
+input {
+    width: 100%;
+}
+input#name {
+    width: 50%!important;
+}
 #error-message {
     display: none;
 }

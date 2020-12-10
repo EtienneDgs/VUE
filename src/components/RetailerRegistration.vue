@@ -24,7 +24,7 @@
                 </div>
                 <div>
                     <select v-model="selected">
-                        <option v-for="categorie in retailerCategories" :key="categorie.val"> {{ categorie.cat }} </option>
+                        <option v-for="categorie in retCategories" :key="categorie.id"> {{ categorie.category }} </option>
                         <p>{{ selected }}</p>
                     </select>
                 </div>
@@ -34,7 +34,10 @@
                     
                 </div>
         </form>
-
+        <div>
+            test image
+            {{ a }}
+        </div>
     </div>
 </template>
 
@@ -47,7 +50,8 @@ export default {
     name: 'RetailerRegistration',
     computed: {
         ...mapGetters({
-            user: 'auth/user'
+            user: 'auth/user',
+            retCategories: 'getRetailerCategories'
         })
     },
     data(){
@@ -57,20 +61,11 @@ export default {
                encodedImage: '  ',
                nameRetailer: '',
                description: '',
-               retailerCategories : [
-                   {
-                   'val':1,
-                   'cat': 'boulangerie'
-                    },
-                    {
-                   'val':2,
-                   'cat': 'epitecrie'
-                    }
-               ],
                imgTest: null,
                cat: '', 
                selected: '',
-               base64: ''
+               base64: '',
+               a: ''
 
             }
     },
@@ -106,8 +101,8 @@ export default {
             formData.set('image', this.image);
             */
 
-            const res = await axios.put('https://haute-loire.org/api/user/'+this.user.id, {
-                //pictures: this.base64,
+            const res = await axios.put('http://localhost:8000/api/user/5', {
+                pictures: this.base64,
                 storeName: this.nameRetailer,
                 storeType: this.selected,
                 storeDescription: this.description
@@ -117,9 +112,14 @@ export default {
             
         },
         async getImg() {
-            const res = await axios.get('https://haute-loire.org/api/user/'+this.user.id);
-            return res.data.pictures;
+            const res = await axios.get('http://localhost:8000/api/user/5');
+            console.log(res);
+            this.a = res.data.pictures;
+            //return res.data.pictures;
         }
+    },
+    mounted() {
+        this.getImg()
     }
 }
 </script>

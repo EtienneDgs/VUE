@@ -29,19 +29,37 @@
                     <label for="password">
                         Mot de passe : 
                     </label>
-                    <input type="password" name="password" placeholder="Mot de passe" id="password" v-model="password">
+                    <input type="password" 
+                        @focus="passwordMsg = true" 
+                        @blur="passwordMsg = false"
+                        @keyup="checkPassword"
+                        name="password" placeholder="Mot de passe" id="password" v-model="password">
                 </div>
                 <div>
                     <label for="password">
                         Confirmation mot de passe : 
                     </label>
-                    <input type="password" name="passwordConfirmation" placeholder="Mot de passe" id="passwordConfirmation" v-model="passwordConfirmation">
+                    <input type="password" 
+                    @focus="confirmationMsg = true" 
+                    @blur="confirmationMsg = false" 
+                    @keyup="checkConfirmation"
+                     name="passwordConfirmation" placeholder="Mot de passe" id="passwordConfirmation" v-model="passwordConfirmation">
                 </div>
                 <div>
                     <button class="btn btn-dark" type="register">Register</button>
                 </div>
             </form>
             
+        </div>
+        <div v-if="passwordMsg" class="col-md-4 text-center" id="message">
+            <h4> Votre mot de passe doit contenir :</h4>
+            <p id="letter" class="invalid">Une lettre <b>minuscule</b></p>
+            <p id="capital" class="invalid">Une lettre  <b>majuscule</b></p>
+            <p id="number" class="invalid">Un <b>nombre</b></p>
+            <p id="length" class="invalid">Minimum <b>6 caractères</b></p>
+        </div>
+        <div v-if="confirmationMsg" class="col-md-4 text-center" id="message">
+            <p id="pwConfirmation" class="invalid">La confrimation doit correspondre au mot de passe.</p>
         </div>
         <div id="error-message">
             <p>Votre compte n'a pas pu être créé.</p>
@@ -70,7 +88,9 @@ export default {
         password: '',
         passwordConfirmation: '',
         lat: '',
-        long: ''
+        long: '',
+        passwordMsg: false,
+        confirmationMsg: false
     }
   }, 
   methods: {
@@ -100,8 +120,11 @@ export default {
 
             console.log(res.data);
             console.log("compte créé avec succès");
+            this.hideError();
             this.displaySuccess();
-
+            this.$router.replace({
+                name: 'Signin'
+            });
             }
             catch (e) {
                 console.log(e);
@@ -151,9 +174,67 @@ export default {
             console.log(res.data[0].lon);
             return [res.data[0].lat, res.data[0].lon]; //on retourne un tableau avec les 2 éléments
 
+        },
+        checkPassword() {
+            var myInput = document.getElementById("password");
+            var letter = document.getElementById("letter");
+            var capital = document.getElementById("capital");
+            var number = document.getElementById("number");
+            var length = document.getElementById("length");
+
+            console.log(this.password);
+            // Validate lowercase letters
+            var lowerCaseLetters = /[a-z]/g;
+            if(myInput.value.match(lowerCaseLetters)) {  
+                letter.classList.remove("invalid");
+                letter.classList.add("valid");
+            } else {
+                letter.classList.remove("valid");
+                letter.classList.add("invalid");
+            }
+            
+            // Validate capital letters
+            var upperCaseLetters = /[A-Z]/g;
+            if(myInput.value.match(upperCaseLetters)) {  
+                capital.classList.remove("invalid");
+                capital.classList.add("valid");
+            } else {
+                capital.classList.remove("valid");
+                capital.classList.add("invalid");
+            }
+
+            // Validate numbers
+            var numbers = /[0-9]/g;
+            if(myInput.value.match(numbers)) {  
+                number.classList.remove("invalid");
+                number.classList.add("valid");
+            } else {
+                number.classList.remove("valid");
+                number.classList.add("invalid");
+            }
+            
+            // Validate length
+            if(myInput.value.length >= 6) {
+                length.classList.remove("invalid");
+                length.classList.add("valid");
+            } else {
+                length.classList.remove("valid");
+                length.classList.add("invalid");
+            }
+                    
+        },
+        checkConfirmation() {
+            var conf = document.getElementById("pwConfirmation");
+            if (this.password == this.passwordConfirmation) {
+                conf.classList.remove("invalid");
+                conf.classList.add("valid");
+            } else {
+                conf.classList.remove("valid");
+                conf.classList.add("invalid");
+            }
         }
-      
-  }
+                
+    }
 
 }
 </script>
@@ -167,4 +248,29 @@ export default {
     display: none;
 }
 
+#message {
+    background-color: #f3f3f3;
+    justify-content: center;
+    text-align: center;
+}
+.valid {
+  color: green;
+}
+
+.valid:before {
+  position: relative;
+  left: -35px;
+  content: "✔";
+}
+
+/* Add a red text color and an "x" when the requirements are wrong */
+.invalid {
+  color: red;
+}
+
+.invalid:before {
+  position: relative;
+  left: -35px;
+  content: "✖";
+}
 </style>

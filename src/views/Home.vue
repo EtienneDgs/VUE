@@ -76,6 +76,9 @@
       <div class="col-md-4">
         information sur l'inscription ?
         Menus vers register et ou signin ?
+        <br>
+        <News />
+        <br>
       </div>
       <div class=" col-md-8 how-to">
         <h2>Concrètement, comment ça marche ?</h2>
@@ -111,12 +114,13 @@
 // @ is an alias to /src
 
 import Map from '@/components/Map.vue';
+import News from '@/components/News.vue';
 import axios from 'axios';
 
 export default {
   name: 'Home',
   components: {
-    //Categories,
+    News,
     Map
   },
   data() {

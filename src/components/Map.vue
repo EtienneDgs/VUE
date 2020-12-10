@@ -2,38 +2,41 @@
     <div style="height: 500px; width: 100%">
         
 
-        <l-map
-        v-if="showMap"
-        :zoom="zoom"
-        :center="center"
-        :options="mapOptions"
-        style="height: 80%"
-        @update:center="centerUpdate"
-        @update:zoom="zoomUpdate"
-        >
+      <l-map
+      v-if="showMap"
+      :zoom="zoom"
+      :center="center"
+      :options="mapOptions"
+      style="height: 80%"
+      @update:center="centerUpdate"
+      @update:zoom="zoomUpdate"
+      >
 
-      <l-tile-layer
-        :url="url"
-        :attribution="attribution"
-      />
+        <l-tile-layer
+          :url="url"
+          :attribution="attribution"
+        />
 
-      <l-marker 
-        v-for="retailer in retailers" 
-        :key="retailer.id" 
-        :lat-lng="getPos(retailer.latitude,retailer.longitude)"
-        id="marker">
-        <l-popup class="popup">
-          <div @click="innerClick(retailer)">
-            {{retailer.name}}
-            <p v-show="showParagraph">
-              {{retailer.description}}
-            </p>
-          </div>
-        </l-popup>
-      </l-marker>
+        <l-marker 
+          v-for="retailer in retailers" 
+          :key="retailer.id" 
+          :lat-lng="getPos(retailer.latitude,retailer.longitude)"
+          
+          id="marker">
+          <l-popup class="popup">
+            <div @click="innerClick(retailer)">
+              {{retailer.name}}
+              <br>
+              {{ retailer.storeType }}
+              <p v-show="showParagraph">
+                {{retailer.description}}
+              </p>
+            </div>
+          </l-popup>
+        </l-marker>
 
 
-    </l-map>
+      </l-map>
   </div>
     
 </template>

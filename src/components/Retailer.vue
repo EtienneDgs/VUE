@@ -17,6 +17,9 @@
             </div>
             <p> {{ retailer.storeDescription }}</p>
 
+            <br>
+            <br>
+
         </div>
         <div class="map">
             <h5>Vous pouvez trouver notre magasin : </h5>

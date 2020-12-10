@@ -2,7 +2,7 @@
     <div>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top" id="nav-total">
           <div class="container-fluid">
-            <router-link :to="{name: 'Home'}"><img src="img/Logo.png" alt="Logo"></router-link>
+            <router-link :to="{name: 'Home'}"><img src="logo.png" alt="Logo"></router-link>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -17,8 +17,8 @@
                         <router-link :to="{name: 'Retailers'}">Où dépenser</router-link>
                     </li>
                     
-                    <template v-if="authenticated">  
-                        <li id="hello-name">
+                    <template v-if="authenticated" class="ml-auto">  
+                        <li id="hello-name" class="ml-auto">
                             Hello, {{user.name}}
                         </li>
                         <li>
@@ -29,9 +29,12 @@
                             <a href="#" @click.prevent="signout">Signout</a>
                         </li>
                     </template>
-                    <template v-else>
-                        <li>
+                    <template v-else class="ml-auto">
+                        <li class="ml-auto" id="right">
                             <router-link :to="{name: 'Signin'}">Signin</router-link>
+                        </li>
+                        <li id="right">
+                            <router-link :to="{name: 'Register'}">Register</router-link>
                         </li>
                     </template>
 
@@ -105,5 +108,10 @@ ul li :hover {
     text-decoration: none;
 
 }
+ul {
+    width: 100%;
+    height: 10vh;
+}
+
 
 </style>

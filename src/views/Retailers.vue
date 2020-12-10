@@ -1,4 +1,5 @@
 <template>
+<div class="container">
     <div class="row">
 
         <br><br>
@@ -12,6 +13,8 @@
         </div>
 
     </div>
+</div>
+    
 
 </template>
 

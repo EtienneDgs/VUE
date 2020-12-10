@@ -11,6 +11,7 @@
                     <input type="text" name="firstName" placeholder="Prénom" id="firstName" v-model="firstName">
                     <input type="text" name="lastName" placeholder="Nom" id="lastName" v-model="lastName">
                 </div>
+                <br>
                 <div>
                     <label for="adress">
                         Adresse : 
@@ -19,12 +20,14 @@
                     <input type="text" name="postCode" placeholder="Code postal" id="postCode" v-model="postCode">
                     <input type="text" name="city" placeholder="Ville" id="city" v-model="city">
                 </div>
+                <br>
                 <div>
                     <label for="email">
                         Email : 
                     </label>
                     <input type="text" name="email" placeholder="email" id="email" v-model="email">
                 </div>
+                <br>
                 <div>
                     <label for="password">
                         Mot de passe : 
@@ -35,6 +38,7 @@
                         @keyup="checkPassword"
                         name="password" placeholder="Mot de passe" id="password" v-model="password">
                 </div>
+                <br>
                 <div>
                     <label for="password">
                         Confirmation mot de passe : 

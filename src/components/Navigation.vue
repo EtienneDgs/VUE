@@ -91,7 +91,6 @@ export default {
 #nav-list {
     margin: 10px;
     padding: 10px;
-
 }
 
 ul li {
@@ -99,8 +98,6 @@ ul li {
     display: inline-block;
     transition: all 0.3s ease-in-out;
     font-size: 20px;
-
-    
 }
 
 ul li :hover {

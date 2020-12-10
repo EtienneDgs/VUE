@@ -34,10 +34,6 @@
                     
                 </div>
         </form>
-        <div>
-            test image
-            {{ a }}
-        </div>
     </div>
 </template>
 
@@ -61,11 +57,9 @@ export default {
                encodedImage: '  ',
                nameRetailer: '',
                description: '',
-               imgTest: null,
                cat: '', 
                selected: '',
-               base64: '',
-               a: ''
+               base64: ''
 
             }
     },
@@ -77,14 +71,10 @@ export default {
             reader.onload = e =>{
                 this.previewImage = e.target.result;
                 //console.log(image);
-
                 //console.log(this.previewImage);
-                this.image = image;
+                //this.image = image;
                 this.base64 = this.previewImage.split(",")[1];
                 //console.log(this.base64);
-                
-                
-
             };
             
 
@@ -114,7 +104,6 @@ export default {
         async getImg() {
             const res = await axios.get('http://localhost:8000/api/user/5');
             console.log(res);
-            this.a = res.data.pictures;
             //return res.data.pictures;
         }
     },

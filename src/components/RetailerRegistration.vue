@@ -34,10 +34,7 @@
                     
                 </div>
         </form>
-        <div class="affiche" v-bind:obj="getImg()">
-            test affichage
-            {{ getImg() }}
-        </div>
+
     </div>
 </template>
 
@@ -72,7 +69,8 @@ export default {
                ],
                imgTest: null,
                cat: '', 
-               selected: ''
+               selected: '',
+               base64: ''
 
             }
     },
@@ -84,33 +82,43 @@ export default {
             reader.onload = e =>{
                 this.previewImage = e.target.result;
                 //console.log(image);
-                console.log(this.previewImage);
+
+                //console.log(this.previewImage);
                 this.image = image;
-                this.encodedImage = btoa(image);
+                this.base64 = this.previewImage.split(",")[1];
+                //console.log(this.base64);
+                
+                
+
             };
+            
+
         },
         async registerAsRetailer() {
-            console.log(this.nameRetailer);
-            console.log(this.description);
-            console.log(this.image);
-            console.log(this.encodedImage);
+            //console.log(this.nameRetailer);
+            //console.log(this.description);
+            //console.log(this.image);
+            //console.log(this.encodedImage);
+            //console.log(this.base64);
 
+            /*
             var formData = new FormData();
             formData.set('image', this.image);
-            
+            */
+
             const res = await axios.put('https://haute-loire.org/api/user/'+this.user.id, {
-                pictures: formData,
+                //pictures: this.base64,
                 storeName: this.nameRetailer,
                 storeType: this.selected,
                 storeDescription: this.description
             });
 
             console.log(res);
+            
         },
-        async getImg() { // à supprimer, c'était pour tester l'affichage de l'image
+        async getImg() {
             const res = await axios.get('https://haute-loire.org/api/user/'+this.user.id);
-            console.log(res.data);
-            return this.user.id;
+            return res.data.pictures;
         }
     }
 }

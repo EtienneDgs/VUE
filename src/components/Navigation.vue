@@ -85,7 +85,7 @@ export default {
 }
 
 .navbar {
-    height: 10vh;
+    height: 50px;
 }
 
 #nav-list {

@@ -13,7 +13,7 @@
             <h2> {{ retailer.storeName }} </h2>
             <h3> {{ retailer.storeType }} </h3>
             <div class="retailer-picture">
-                {{ retailer.pictures }}
+                <img :src="retailer.pictures" alt="image_magasin">
             </div>
             <p> {{ retailer.storeDescription }}</p>
 

@@ -91,11 +91,12 @@ export default {
             formData.set('image', this.image);
             */
 
-            const res = await axios.put('http://localhost:8000/api/user/5', {
+            const res = await axios.put('https://haute-loire.org/api/user/'+this.user.id, {
                 pictures: this.base64,
                 storeName: this.nameRetailer,
                 storeType: this.selected,
-                storeDescription: this.description
+                storeDescription: this.description,
+                retailer: 1
             });
 
             console.log(res);

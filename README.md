@@ -1,5 +1,11 @@
 # mvvm_twp
 
+
+
+### AVANT DE LANCER
+
+npm install --save vue-axios
+ 
 ## Project setup
 ```
 npm install
@@ -22,3 +28,4 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+

@@ -5,7 +5,11 @@
         <br><br>
 
         <div class="col-md-6">
-            <RetailersList v-bind:retailers="retailers"/>
+            <RetailersList 
+            v-bind:retailers="retailers"
+            @mouse-over-retailer="mouseOverRetailer"
+            @mouse-leave-retailer="mouseLeaveRetailer"
+            />
         </div>
 
         <div class="col-md-6">
@@ -36,6 +40,12 @@ export default {
     async getRetailers() {
       var res = await axios.get('https://haute-loire.org/api/retailers');
       this.retailers = res.data;
+    },
+    mouseOverRetailer(index) {
+        console.log("mouse over : ",index);
+    },
+    mouseLeaveRetailer(index) {
+        console.log("mouse leave :",index);
     }
     
   },

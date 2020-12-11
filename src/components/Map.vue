@@ -21,9 +21,10 @@
           v-for="retailer in retailers" 
           :key="retailer.id" 
           :lat-lng="getPos(retailer.latitude,retailer.longitude)"
-          
           id="marker">
-          <l-popup class="popup">
+          <l-popup class="popup"
+          :icon-size="iconSize"
+          :icon-url="iconUrl">
             <div @click="innerClick(retailer)">
               {{retailer.name}}
               <br>
@@ -34,7 +35,6 @@
             </div>
           </l-popup>
         </l-marker>
-
 
       </l-map>
   </div>
@@ -73,7 +73,9 @@ import { LMap, LTileLayer, LMarker, LPopup } from "vue2-leaflet";
             zoomSnap: 0.5
         },
         showMap: true,
-        retailer: ''
+        retailer: '',
+        iconSize: [50,50],
+        iconUrl: "https://www.pngfind.com/pngs/m/114-1147878_location-poi-pin-marker-position-red-map-google.png"
     }
   },
   methods: {
@@ -105,11 +107,22 @@ import { LMap, LTileLayer, LMarker, LPopup } from "vue2-leaflet";
     background-color: #f3f3f3;
 }
 #marker {
-  size: 200;
-  color:red;
+  color:blue;
 }
 .popup {
   size:150;
   color:red;
+  /*
+  height: 150px;
+  width: 200px;
+  */
 }
+.leaflet-marker-icon {
+  /*
+  background-color: black;
+  */
+  size: 200%;
+  height: 200%;
+}
+
 </style>

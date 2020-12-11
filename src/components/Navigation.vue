@@ -24,6 +24,9 @@
                         <li>
                             <router-link :to="{name: 'Dashboard'}">Dashboard</router-link>
                         </li>
+                        <li>
+                            <router-link :to="{name: 'Wallet'}">Portefeuille</router-link>
+                        </li>
                         
                         <li>
                             <a href="#" @click.prevent="signout">Signout</a>

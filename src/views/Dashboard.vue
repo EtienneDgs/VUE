@@ -3,17 +3,20 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-4 text-center " id="user-dashboard-menu">
+            <br><br><br>
             <h2>menu utilisateur</h2>
-
             <div class="user-dashboard-profile">
               <!-- User Image -->
               <div class="profile-thumb">
                 <img src="../../public/pp.jpg" alt="" class="rounded-circle">
               </div>
               <!-- User Name -->
-              <h5 class="text-center">ajouter le nom ?</h5>
+              <br>
+              <h4 class="text-center">{{ this.currentUser.name }}</h4>
               <p>Membre depuis le : </p>
-              <p></p>
+              <p>{{ this.currentUser.created_at.slice(0,10) }}</p>
+              <h5>Votre solde Bordier Coin:</h5>
+              <p>{{ this.currentUser.payroll }} Bordier Coins</p>
             </div>
 
             <div class="user-dashboard-menu text-left">
@@ -24,7 +27,7 @@
                 <li v-on:click="retailerRegisterMenu" >
                   <a href="#"><i class="" ></i>Editer un compte commerçant</a>
                 </li>
-                <li>
+                <li v-on:click="paimentMenu">
                   <a href="#"><i class=""></i>Solde Ethicoins</a>
                 </li>
                 <li>
@@ -37,6 +40,7 @@
             <h2>on affiche ici les informations du menu</h2>
             <RetailerRegistration v-if="displayRetailerRegistration"/>
             <UpdateAccount v-if="displayUpdateAccount"/>
+            <Paiement v-if="displayPayroll"/>
           </div>
         </div>
       </div>
@@ -46,17 +50,21 @@
 <script>
 import RetailerRegistration from '@/components/RetailerRegistration.vue';
 import UpdateAccount from '@/components/UpdateAccount.vue';
+import Paiement from '@/components/shop/Paiement.vue';
+import axios from 'axios';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'Dashboard',
 
-  components: { RetailerRegistration, UpdateAccount },
+  components: { RetailerRegistration, UpdateAccount, Paiement },
 
   data() {
     return {
+      currentUser: null,
       displayUpdateAccount: true,
       displayRetailerRegistration: false,
-      displayPayroll: false
+      displayPayroll: false,
     }
   },
   methods: {
@@ -77,7 +85,24 @@ export default {
       this.displayRetailerRegistration = true;
       this.displayPayroll = false;
 
+    },
+    paimentMenu() {
+      this.displayUpdateAccount = false;
+      this.displayRetailerRegistration = false;
+      this.displayPayroll = true;
+    },
+    async getUserDetails() {
+      var res = await axios.get('https://haute-loire.org/api/user/'+this.user.id);
+      this.currentUser = res.data;
     }
+  },
+  computed: {
+    ...mapGetters({
+      user: 'auth/user'
+    })
+  },
+  beforeMount() {
+    this.getUserDetails();
   }
 }
 

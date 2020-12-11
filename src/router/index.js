@@ -7,6 +7,7 @@ import Dashboard from '../views/Dashboard.vue'
 import Register from '../views/Register.vue'
 import Retailers from '../views/Retailers.vue'
 import Retailer from '../views/Retailer.vue'
+import Wallet from '../views/Wallet.vue'
 import store from '@/store'
 
 Vue.use(VueRouter)
@@ -16,6 +17,11 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/Wallet',
+    name: 'Wallet',
+    component: Wallet
   },
   {
     path: '/Retailers',

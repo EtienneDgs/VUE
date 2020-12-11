@@ -8,13 +8,18 @@
             </div>
         </div>
 
-        <div class="retailer-content">
+        <div class="retailer-content text-center">
             <br><br><br><br>
-            <h2> {{ retailer.storeName }} </h2>
-            <h3> {{ retailer.storeType }} </h3>
+            <h2 id="name"> {{ retailer.storeName }} </h2>
+            <br>
+            <h3 id="category"> {{ retailer.storeType }} </h3>
+            <br>
             <div class="retailer-picture">
                 <img :src="retailer.pictures" alt="image_magasin">
             </div>
+            <br>
+            <br>
+            <h4>Description du magasin :</h4>
             <p> {{ retailer.storeDescription }}</p>
 
             <br>
@@ -56,8 +61,9 @@ div {
     justify-content: center;
 }
 
-#bouton-retour {
+.bouton-retour {
     break-after: always;
+    padding-top: 50px;
 }
 
 </style>

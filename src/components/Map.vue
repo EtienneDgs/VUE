@@ -17,23 +17,26 @@
           :attribution="attribution"
         />
 
-        <l-marker 
-          v-for="retailer in retailers" 
+        <l-marker ref="marker"
+          v-for="(retailer, index) in retailers"
           :key="retailer.id" 
           :lat-lng="getPos(retailer.latitude,retailer.longitude)"
-          id="marker">
-          <l-popup class="popup"
-          :icon-size="iconSize"
-          :icon-url="iconUrl">
-            <div @click="innerClick(retailer)">
-              {{retailer.name}}
-              <br>
-              {{ retailer.storeType }}
-              <p v-show="showParagraph">
-                {{retailer.description}}
-              </p>
-            </div>
-          </l-popup>
+          id="marker"
+          @mouseover="$event.target.openPopup()" v-on:mouseover="test(index)">
+
+              <l-popup class="popup">
+                <div @click="innerClick(retailer)">
+                  {{retailer.name}}
+                  <br>
+                  {{ retailer.storeType }}
+                  <p v-show="showParagraph">
+                    {{retailer.description}}
+                  </p>
+                </div>
+              </l-popup>
+            
+
+
         </l-marker>
 
       </l-map>
@@ -46,9 +49,9 @@
 
 
 <script>
+import icon from '@/assets/mapicon.png';
 import { latLng } from "leaflet";
 import { LMap, LTileLayer, LMarker, LPopup } from "vue2-leaflet";
-
 
     export default {
         name: "Map",
@@ -75,7 +78,7 @@ import { LMap, LTileLayer, LMarker, LPopup } from "vue2-leaflet";
         showMap: true,
         retailer: '',
         iconSize: [50,50],
-        iconUrl: "https://www.pngfind.com/pngs/m/114-1147878_location-poi-pin-marker-position-red-map-google.png"
+        iconUrl: icon
     }
   },
   methods: {
@@ -96,6 +99,12 @@ import { LMap, LTileLayer, LMarker, LPopup } from "vue2-leaflet";
     },
     getPos(lat, long) {
       return latLng(lat,long);
+    },
+    test(e) {
+      console.log(e);
+      console.log(this.retailers[e]);
+      //this.retailers[e].marker.openPopup();
+
     }
   }
 }

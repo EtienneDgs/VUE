@@ -31,7 +31,7 @@
             <p>A l'adresse suivante : <b>{{ retailer.address }}, {{retailer.postalCode }} {{ retailer.city }} </b></p>
             <Map v-bind:retailers="{retailer}"/>
         </div>
-        <p> props {{ retailer }}</p> 
+
      
         
 

@@ -9,8 +9,8 @@
                 @mouseover="mouseOver(index)"
                 @mouseleave="mouseLeave(index)"
                 > 
-                {{ retailer.storeName }}
-            </li>
+                    {{ retailer.storeName }}
+                </li>
             </ul>
         </div>
     </div>
@@ -48,6 +48,5 @@ export default {
 
 ul li:hover {
     background-color: darkgrey !important;
-
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div>
         <Retailer v-bind:retailer="retailer"/>
-        {{ $route.params.id }}
+
     </div>
 </template>
 
